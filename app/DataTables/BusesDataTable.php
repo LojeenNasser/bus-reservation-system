@@ -31,7 +31,7 @@ class BusesDataTable extends DataTable
     /**
      * Get query source of dataTable.
      *
-     * @param \App\App\Bus $model
+     * @param \App\Bus $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function query(Bus $model)
@@ -54,7 +54,7 @@ class BusesDataTable extends DataTable
             ->addTableClass('table-hover')
             ->parameters([
                 'responsive' => true,
-                'autoWidth' => false
+                'autoWidth' => false,
             ]);
     }
 
@@ -66,10 +66,10 @@ class BusesDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            Column::make('id')->width('15%'),
-            Column::make('name')->width('40%'),
-            Column::make('seats')->width('20%'),
-            Column::computed('actions')->width('25%')->addClass('text-center')
+            Column::make('id')->width('15%')->title('ID'),
+            Column::make('name')->width('40%')->title('Bus Name'),
+            Column::make('seats')->width('20%')->title('Number of Seats'),
+            Column::computed('actions')->width('25%')->addClass('text-center')->title('Actions'),
         ];
     }
 
@@ -78,7 +78,7 @@ class BusesDataTable extends DataTable
      *
      * @return string
      */
-    protected function filename():string
+    protected function filename(): string
     {
         return 'Buses_' . date('YmdHis');
     }

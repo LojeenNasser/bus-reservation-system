@@ -11,7 +11,7 @@ class RidesDataTable extends DataTable
     /**
      * Build DataTable class.
      *
-     * @param mixed $query Results from query() method.
+     * @param mixed $query Results from the query() method.
      * @return \Yajra\DataTables\DataTableAbstract
      */
     public function dataTable($query)
@@ -96,16 +96,16 @@ class RidesDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            Column::make('id')->width('5%'),
-            Column::make('route')->width('30%')->name('route.id'),
-            Column::make('bus')->width('10%')->name('bus.name'),
-            Column::make('departure_time')->width('5%'),
-            Column::make('ride_date')->width('10%'),
-            Column::make('ride_type')->width('5%')->searchable('false'),
-            Column::make('auto_confirm')->width('5%')->searchable('false'),
-            Column::make('updated_at')->width('10%'),
-            Column::computed('state')->width('5%'),
-            Column::computed('actions')->width('15%')->addClass('text-center'),
+            Column::make('id')->width('5%')->title('ID'),
+            Column::make('route')->width('30%')->name('route.id')->title('Route'),
+            Column::make('bus')->width('10%')->name('bus.name')->title('Bus'),
+            Column::make('departure_time')->width('5%')->title('Departure Time'),
+            Column::make('ride_date')->width('10%')->title('Ride Date'),
+            Column::make('ride_type')->width('5%')->searchable('false')->title('Ride Type'),
+            Column::make('auto_confirm')->width('5%')->searchable('false')->title('Auto Confirm'),
+            Column::make('updated_at')->width('10%')->title('Last Updated'),
+            Column::computed('state')->width('5%')->title('State'),
+            Column::computed('actions')->width('15%')->addClass('text-center')->title('Actions'),
         ];
     }
 

@@ -81,5 +81,5 @@ class User extends Authenticatable implements MustVerifyEmail
         return "{$this->attributes['first_name']} {$this->attributes['last_name']}";
     }
 
-    
+
 }

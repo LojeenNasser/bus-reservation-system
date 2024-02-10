@@ -54,7 +54,7 @@ class LocationsDataTable extends DataTable
             ->addTableClass('table-hover')
             ->parameters([
                 'responsive' => true,
-                'autoWidth' => false
+                'autoWidth' => false,
             ]);
     }
 
@@ -66,9 +66,9 @@ class LocationsDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            Column::make('id')->width('15%'),
-            Column::make('name')->width('55%'),
-            Column::computed('actions')->width('30%')->addClass('text-center')
+            Column::make('id')->width('15%')->title('ID'),
+            Column::make('name')->width('55%')->title('Location Name'),
+            Column::computed('actions')->width('30%')->addClass('text-center')->title('Actions'),
         ];
     }
 
@@ -77,7 +77,7 @@ class LocationsDataTable extends DataTable
      *
      * @return string
      */
-    protected function filename():string
+    protected function filename(): string
     {
         return 'Locations_' . date('YmdHis');
     }

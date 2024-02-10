@@ -12,22 +12,22 @@ class RoutesDataTable extends DataTable
     /**
      * Build DataTable class.
      *
-     * @param mixed $query Results from query() method.
+     * @param mixed $query Results from the query() method.
      * @return \Yajra\DataTables\DataTableAbstract
      */
     public function dataTable($query)
     {
         return datatables()
             ->eloquent($query)
-            ->addColumn('total_locations', fn(Route $route) => $route->locations->count())
-            ->addColumn('travel_duration', fn(Route $route) => $route->getTravelDuration())
+            ->addColumn('total_locations', fn (Route $route) => $route->locations->count())
+            ->addColumn('travel_duration', fn (Route $route) => $route->getTravelDuration())
             ->addColumn('actions', function (Route $route) {
                 return view('admin.partials.datatable-action-buttons', [
                     'id' => $route->id,
                     'itemName' => 'route',
                     'showRoute' => route('admin.routes.show', $route),
                     'editRoute' => route('admin.routes.edit', $route),
-                    'destroyRoute' => route('admin.routes.destroy', $route)
+                    'destroyRoute' => route('admin.routes.destroy', $route),
                 ]);
             })
             ->orderColumn('total_locations', function ($query, $order) {
@@ -47,7 +47,7 @@ class RoutesDataTable extends DataTable
     /**
      * Get query source of dataTable.
      *
-     * @param \App\App\Route $model
+     * @param \App\Route $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function query(Route $model)
@@ -70,7 +70,7 @@ class RoutesDataTable extends DataTable
             ->addTableClass('table-hover')
             ->parameters([
                 'responsive' => true,
-                'autoWidth' => false
+                'autoWidth' => false,
             ]);
     }
 
@@ -82,11 +82,11 @@ class RoutesDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            Column::make('id')->width('10%'),
-            Column::make('name')->width('30%'),
-            Column::make('total_locations')->width('15%')->searchable(false),
-            Column::make('travel_duration')->width('20%')->searchable(false),
-            Column::computed('actions')->width('25%')->addClass('text-center')
+            Column::make('id')->width('10%')->title('ID'),
+            Column::make('name')->width('30%')->title('Name'),
+            Column::make('total_locations')->width('15%')->searchable(false)->title('Total Locations'),
+            Column::make('travel_duration')->width('20%')->searchable(false)->title('Travel Duration'),
+            Column::computed('actions')->width('25%')->addClass('text-center')->title('Actions'),
         ];
     }
 
@@ -95,7 +95,7 @@ class RoutesDataTable extends DataTable
      *
      * @return string
      */
-    protected function filename():string
+    protected function filename(): string
     {
         return 'Routes_' . date('YmdHis');
     }
